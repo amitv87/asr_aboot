@@ -58,11 +58,11 @@ int sendSync(int usbfd, const void *data, size_t len, int need_zlp){
         break;
       }
     }
-    len -= rc, data += rc;
+    else len -= rc, data += rc;
   };
     // dprintf("write: %zu,%zu\r\n", olen, olen - len);
   usleep(5000);
-  return rc;
+  return olen - len;
 }
 
 int recvSync(int usbfd, void *data, size_t len, unsigned timeout){
